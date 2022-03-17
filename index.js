@@ -16,6 +16,7 @@ function init() {
       "Add a Department",
       "Add a Role",
       "Add an Employee",
+      "Update an Employee",
       "Exit"
       ]
 
@@ -32,6 +33,8 @@ function init() {
     if(answer.options === "Add a Role" ) addRole();
 
     if(answer.options === "Add an Employee" ) addEmployee();
+
+    if(answer.options === "Update an Employee") updateEmployee();
 
     if(answer.options === "Exit" ) leave();
 
@@ -130,6 +133,36 @@ function addEmployee () { // gives the user the ability to dynamically insert da
     connection.query(query, [answer.first, answer.last, answer.roleid, answer.managerid ], (err, res) => {
       err ? console.error(err) : console.log(`Successfully added employee ${answer.first}`);
       init()
+    })
+  })
+}
+
+function updateEmployee() {
+  inquirer.prompt([
+    {
+      message: "What is the employee's id",
+      name: "employeeid"
+    }, 
+    {
+      message: "What is the employee's new role",
+      name: "employeeRole"
+    }, 
+    {
+      message: "What is there new department ?",
+      name: "newdepartment",
+      type: "list",
+      choices: [1,2,3,4]
+    }, 
+    {
+      message:"What is the employee's new salary ?",
+      name: "newsal"
+    }
+  ])
+  .then((answer)=>{
+    let query = 'UPDATE roles SET title = ?, salary = ?, department_id = ? WHERE id = ?';
+    connection.query(query, [answer.employeeRole, answer.newsal, answer.newdepartment, parseInt(answer.employeeid)], (err,res)=>{
+      err ? console.error(err) : console.log('Successful')
+      init();
     })
   })
 }
