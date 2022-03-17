@@ -1,23 +1,44 @@
+CREATE TABLE department(
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE roles(
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+title VARCHAR(30) NOT NULL,
+salary DECIMAL NOT NULL,
+department_id INT NOT NULL
+);
+
+CREATE TABLE employee(
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+first_name VARCHAR(30) NOT NULL,
+last_name VARCHAR(30) NOT NULL ,
+role_id INT NOT NULL,
+manager_id INT
+
+);
+
 INSERT INTO department
 (name) 
 
 VALUES
-("Engineering"),
-("Legal"), 
 ("Sales"),
-("Finance");
+("Engineering"), 
+("Finance"),
+("Legal");
 
 INSERT INTO roles
     (title, salary, department_id)
 VALUES
-    ('Sales Lead', 100000, 3),
-    ('Salesperson', 80000, 3),
-    ('Lead Engineer', 150000, 1),
-    ('Software Engineer', 120000, 1),
-    ('Account Manager', 160000, 4),
-    ('Accountant', 125000, 4),
-    ('Legal Team Lead', 250000, 2),
-    ('Lawyer', 190000, 2);
+    ('Sales Lead', 100000, 1),
+    ('Salesperson', 80000, 1),
+    ('Lead Engineer', 150000, 2),
+    ('Software Engineer', 120000, 2),
+    ('Account Manager', 160000, 3),
+    ('Accountant', 125000, 3),
+    ('Legal Team Lead', 250000, 4),
+    ('Lawyer', 190000, 4);
     
     INSERT INTO employee
 		(first_name, last_name, role_id, manager_id) 
@@ -33,3 +54,5 @@ VALUES
 		('Rhiana', 'Williams', 7, NULL),
 		('Aja', 'Adanna', 8, 7);
         
+        
+		
